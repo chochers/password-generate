@@ -11,9 +11,16 @@ import {
 import "@vkontakte/vkui/dist/vkui.css";
 import { generatePasswordFx } from "../api/generate";
 import { IGenerate } from "../interfaces/IGenerate";
+import { useUnit } from "effector-react";
+import { $password } from "../model/password";
 
 const Home = ({ id }: any) => {
-  const [password, setPassword] = useState("");
+
+  const passwordData = useUnit({
+    password: $password,
+    generatePasswordFx
+  });
+  // const [password, setPassword] = useState("");
   const [length, setLength] = useState(12);
   const [includeNumbers, setIncludeNumbers] = useState(true);
   const [includeSymbols, setIncludeSymbols] = useState(true);
@@ -40,8 +47,8 @@ const Home = ({ id }: any) => {
 
   const generatePassword = async () => {
     const settingPassword = createSettingPassword();
-    const password: string = await generatePasswordFx(settingPassword);
-    setPassword(password);
+    passwordData.generatePasswordFx(settingPassword);
+    // setPassword(password);
   }
 
   return (
@@ -72,7 +79,7 @@ const Home = ({ id }: any) => {
             Сгенерировать
           </Button>
         </Div>
-        {password && (
+        {passwordData.password && (
           <Group>
             <Div style={{ cursor: "pointer" }}>
               <div
@@ -84,7 +91,7 @@ const Home = ({ id }: any) => {
                   wordBreak: "break-all",
                 }}
               >
-                {password}
+                {passwordData.password}
               </div>
             </Div>
           </Group>
