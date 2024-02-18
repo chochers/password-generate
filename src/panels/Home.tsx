@@ -10,7 +10,7 @@ import {
 } from "@vkontakte/vkui";
 import "@vkontakte/vkui/dist/vkui.css";
 import { generatePasswordFx } from "../api/generate";
-import { IGenerate } from "../interface/IGenerate";
+import { IGenerate } from "../interfaces/IGenerate";
 
 const Home = ({ id }: any) => {
   const [password, setPassword] = useState("");

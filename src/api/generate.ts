@@ -1,6 +1,6 @@
 import { createEffect } from "effector";
 import { api } from "./axiosInstance";
-import { IGenerate } from "../interface/IGenerate";
+import { IGenerate } from "../interfaces/IGenerate";
 
 export const generatePasswordFx  = createEffect(async (dataGenerate: IGenerate) => {
     try {
